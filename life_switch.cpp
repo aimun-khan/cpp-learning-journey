@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 int main() {
@@ -8,64 +9,70 @@ int main() {
     int wisdom = 50;
     int confidence = 50;
 
-    cout << "==============================" << endl;
-    cout << "       LIFE SWITCH" << endl;
-    cout << "==============================" << endl;
+    string choices[4] = {
+        "Study for your exam",
+        "Go out with friends",
+        "Help your family",
+        "Play games all night"
+    };
+
+    cout << "================================" << endl;
+    cout << "          LIFE SWITCH" << endl;
+    cout << "================================" << endl;
 
     cout << endl;
-    cout << "Welcome to Life Switch!" << endl;
-    cout << "Every choice you make will change your life." << endl;
+    cout << "Your life starts with 50 points." << endl;
 
     cout << endl;
-    cout << "Your starting stats:" << endl;
-
-    cout << "Happiness: " << happiness << endl;
-    cout << "Money: " << money << endl;
-    cout << "Wisdom: " << wisdom << endl;
-    cout << "Confidence: " << confidence << endl;
-
-    cout << endl;
-    cout << "Your first decision..." << endl;
-
-    cout << endl;
+    cout << "Your first situation:" << endl;
     cout << "You have an important exam tomorrow." << endl;
-    cout << "What do you do?" << endl;
 
     cout << endl;
-    cout << "1. Study" << endl;
-    cout << "2. Go out with friends" << endl;
+
+    for (int i = 0; i < 4; i++) {
+        cout << i + 1 << ". " << choices[i] << endl;
+    }
 
     int choice;
+
     cout << endl;
-    cout << "Choose 1 or 2: ";
+    cout << "What will you choose? ";
     cin >> choice;
 
     if (choice == 1) {
         wisdom += 10;
         confidence += 5;
-
-        cout << endl;
-        cout << "You studied hard!" << endl;
+        happiness -= 5;
     }
     else if (choice == 2) {
         happiness += 10;
         confidence += 5;
-
-        cout << endl;
-        cout << "You had a great time with your friends!" << endl;
+    }
+    else if (choice == 3) {
+        happiness += 5;
+        confidence += 10;
+    }
+    else if (choice == 4) {
+        happiness += 5;
+        wisdom -= 10;
     }
     else {
-        cout << endl;
         cout << "Invalid choice!" << endl;
+        return 0;
     }
 
     cout << endl;
-    cout << "Updated life stats:" << endl;
+    cout << "================================" << endl;
+    cout << "       YOUR LIFE STATS" << endl;
+    cout << "================================" << endl;
 
-    cout << "Happiness: " << happiness << endl;
-    cout << "Money: " << money << endl;
-    cout << "Wisdom: " << wisdom << endl;
+    cout << "Happiness:  " << happiness << endl;
+    cout << "Money:      " << money << endl;
+    cout << "Wisdom:     " << wisdom << endl;
     cout << "Confidence: " << confidence << endl;
+
+    cout << endl;
+    cout << "Your choice has changed your life!" << endl;
 
     return 0;
 }
