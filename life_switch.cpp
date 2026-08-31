@@ -1,25 +1,39 @@
 #include <iostream>
+#include <string>
 #include <cstdlib>
 #include <ctime>
 using namespace std;
 
-void showStats(int happiness, int money, int wisdom,
-               int confidence, int kindness, int ambition) {
+void showStats(
+    int happiness,
+    int money,
+    int wisdom,
+    int confidence,
+    int kindness,
+    int ambition,
+    int friendship,
+    int familyBond
+) {
 
     cout << endl;
     cout << "----------- LIFE STATS -----------" << endl;
 
-    cout << "Happiness:  " << happiness << endl;
-    cout << "Money:      " << money << endl;
-    cout << "Wisdom:     " << wisdom << endl;
-    cout << "Confidence: " << confidence << endl;
-    cout << "Kindness:   " << kindness << endl;
-    cout << "Ambition:   " << ambition << endl;
+    cout << "Happiness:    " << happiness << endl;
+    cout << "Money:        " << money << endl;
+    cout << "Wisdom:       " << wisdom << endl;
+    cout << "Confidence:   " << confidence << endl;
+    cout << "Kindness:     " << kindness << endl;
+    cout << "Ambition:     " << ambition << endl;
+    cout << "Friendship:   " << friendship << endl;
+    cout << "Family Bond:  " << familyBond << endl;
 }
 
 int main() {
 
     srand(time(0));
+
+    string name;
+    int age;
 
     int happiness = 50;
     int money = 50;
@@ -29,7 +43,9 @@ int main() {
     int kindness = 0;
     int ambition = 0;
 
-    int age = 12;
+    int friendship = 50;
+    int familyBond = 50;
+
     int choice;
 
     cout << "====================================" << endl;
@@ -37,9 +53,17 @@ int main() {
     cout << "====================================" << endl;
 
     cout << endl;
-    cout << "Your decisions will shape your personality." << endl;
 
-    for (int round = 1; round <= 5; round++) {
+    cout << "Enter your name: ";
+    getline(cin, name);
+
+    cout << "Enter your starting age: ";
+    cin >> age;
+
+    cout << endl;
+    cout << "Welcome, " << name << "!" << endl;
+
+    for (int round = 1; round <= 10; round++) {
 
         age++;
 
@@ -48,9 +72,9 @@ int main() {
         cout << "AGE: " << age << endl;
         cout << "====================================" << endl;
 
-        int event = rand() % 3 + 1;
+        int event = rand() % 5;
 
-        if (event == 1) {
+        if (event == 0) {
 
             cout << endl;
             cout << "Your friend needs your help." << endl;
@@ -63,25 +87,26 @@ int main() {
 
             if (choice == 1) {
 
+                kindness += 10;
                 happiness += 10;
                 confidence += 5;
-                kindness += 10;
+                friendship += 10;
 
-                cout << "You helped your friend." << endl;
+                cout << "Your friendship became stronger." << endl;
             }
             else if (choice == 2) {
 
                 happiness -= 5;
-                ambition += 5;
+                friendship -= 10;
 
-                cout << "You focused on yourself." << endl;
+                cout << "Your friend trusts you less." << endl;
             }
         }
 
-        else if (event == 2) {
+        else if (event == 1) {
 
             cout << endl;
-            cout << "You found money on the ground." << endl;
+            cout << "You found money on the road." << endl;
 
             cout << "1. Find the owner" << endl;
             cout << "2. Keep the money" << endl;
@@ -92,8 +117,9 @@ int main() {
             if (choice == 1) {
 
                 wisdom += 10;
-                happiness += 5;
                 kindness += 5;
+                happiness += 5;
+                confidence += 5;
 
                 cout << "You returned the money." << endl;
             }
@@ -106,7 +132,7 @@ int main() {
             }
         }
 
-        else {
+        else if (event == 2) {
 
             cout << endl;
             cout << "You have an important exam tomorrow." << endl;
@@ -120,8 +146,8 @@ int main() {
             if (choice == 1) {
 
                 wisdom += 10;
-                confidence += 5;
                 ambition += 5;
+                confidence += 5;
 
                 cout << "You studied hard." << endl;
             }
@@ -129,8 +155,64 @@ int main() {
 
                 happiness += 10;
                 wisdom -= 5;
+                friendship += 5;
 
-                cout << "You went out with friends." << endl;
+                cout << "You spent time with your friends." << endl;
+            }
+        }
+
+        else if (event == 3) {
+
+            cout << endl;
+            cout << "Your family needs your help." << endl;
+
+            cout << "1. Help your family" << endl;
+            cout << "2. Focus only on yourself" << endl;
+
+            cout << "Choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+
+                kindness += 10;
+                happiness += 5;
+                familyBond += 15;
+
+                cout << "Your family bond became stronger." << endl;
+            }
+            else if (choice == 2) {
+
+                ambition += 5;
+                familyBond -= 10;
+
+                cout << "Your family felt ignored." << endl;
+            }
+        }
+
+        else {
+
+            cout << endl;
+            cout << "You have an opportunity to learn a new skill." << endl;
+
+            cout << "1. Learn the skill" << endl;
+            cout << "2. Ignore the opportunity" << endl;
+
+            cout << "Choice: ";
+            cin >> choice;
+
+            if (choice == 1) {
+
+                wisdom += 10;
+                ambition += 10;
+                confidence += 5;
+
+                cout << "You learned something new!" << endl;
+            }
+            else if (choice == 2) {
+
+                happiness += 2;
+
+                cout << "You decided to relax." << endl;
             }
         }
 
@@ -140,23 +222,45 @@ int main() {
             wisdom,
             confidence,
             kindness,
-            ambition
+            ambition,
+            friendship,
+            familyBond
         );
     }
 
     cout << endl;
     cout << "====================================" << endl;
-    cout << "          YOUR PERSONALITY" << endl;
+    cout << "          YOUR LIFE RESULT" << endl;
     cout << "====================================" << endl;
 
-    if (kindness > ambition) {
-        cout << "You are becoming a kind person." << endl;
+    cout << endl;
+    cout << "Player: " << name << endl;
+    cout << "Final Age: " << age << endl;
+
+    if (friendship >= 80) {
+        cout << "Friendship: Best Friends" << endl;
     }
-    else if (ambition > kindness) {
-        cout << "You are becoming an ambitious person." << endl;
+    else if (friendship >= 60) {
+        cout << "Friendship: Close Friends" << endl;
+    }
+    else if (friendship >= 40) {
+        cout << "Friendship: Friends" << endl;
     }
     else {
-        cout << "You have a balanced personality." << endl;
+        cout << "Friendship: Distant" << endl;
+    }
+
+    if (familyBond >= 80) {
+        cout << "Family: Very Strong Bond" << endl;
+    }
+    else if (familyBond >= 60) {
+        cout << "Family: Strong Bond" << endl;
+    }
+    else if (familyBond >= 40) {
+        cout << "Family: Normal Bond" << endl;
+    }
+    else {
+        cout << "Family: Weak Bond" << endl;
     }
 
     int lifeScore =
@@ -165,10 +269,26 @@ int main() {
         wisdom +
         confidence +
         kindness +
-        ambition;
+        ambition +
+        friendship +
+        familyBond;
 
     cout << endl;
     cout << "Final Life Score: " << lifeScore << endl;
+
+    if (lifeScore >= 400) {
+        cout << "You created an extraordinary life!" << endl;
+    }
+    else if (lifeScore >= 320) {
+        cout << "You created a successful life!" << endl;
+    }
+    else {
+        cout << "Your life had many challenges." << endl;
+    }
+
+    cout << endl;
+    cout << "Every choice shaped your story." << endl;
+    cout << "Thank you for playing, " << name << "!" << endl;
 
     return 0;
 }
